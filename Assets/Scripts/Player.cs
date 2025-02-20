@@ -26,6 +26,15 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    void OnRightLegMove(InputValue val)
+    {
+        rightLegTorque = val.Get<float>();
+    }
+    void OnLeftLegMove(InputValue val)
+    {
+        leftLegTorque = val.Get<float>();
+    }
+
     void Move(){
         rightLegRb.AddTorque(rightLegTorque * torqueForce);
         leftLegRb.AddTorque(leftLegTorque * torqueForce);
