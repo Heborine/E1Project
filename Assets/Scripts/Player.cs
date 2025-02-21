@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
     [Header("Torque Settings")]
     [SerializeField]
     private float torqueForce = 2f;
-
+    [SerializeField]
+    private float maxTorque = 2f;
     float rightLegTorque = 0f;
     float leftLegTorque = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,8 +37,11 @@ public class Player : MonoBehaviour
     }
 
     void Move(){
-        rightLegRb.AddTorque(rightLegTorque * torqueForce);
-        leftLegRb.AddTorque(leftLegTorque * torqueForce);
+        float clampedRightLegTorque = Mathf.Clamp(rightLegTorque * torqueForce, -maxTorque, maxTorque);
+        float clampedLeftLegTorque = Mathf.Clamp(leftLegTorque * torqueForce, -maxTorque, maxTorque);
+        
+        rightLegRb.AddTorque(clampedRightLegTorque);
+        leftLegRb.AddTorque(clampedLeftLegTorque);
     }
 
     void OnRightLeg(InputValue val){

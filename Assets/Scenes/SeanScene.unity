@@ -364,6 +364,7 @@ MonoBehaviour:
   leftLegRb: {fileID: 1525307588}
   rightLegRb: {fileID: 1294270650}
   torqueForce: 1
+  maxTorque: 0.3
 --- !u!212 &1113246753
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -475,14 +476,14 @@ HingeJoint2D:
   m_GameObject: {fileID: 1113246749}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 1
+  m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 1294270650}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0.09743403, y: 0.095810086}
-  m_ConnectedAnchor: {x: -0.08756597, y: 0.095810086}
+  m_Anchor: {x: 0.09, y: 0.1}
+  m_ConnectedAnchor: {x: -0.09, y: 0.1}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -501,14 +502,14 @@ HingeJoint2D:
   m_GameObject: {fileID: 1113246749}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 1
+  m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 1525307588}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0901264, y: 0.09986984}
-  m_ConnectedAnchor: {x: -0.0901264, y: 0.09986984}
+  m_Anchor: {x: -0.09, y: 0.1}
+  m_ConnectedAnchor: {x: -0.09, y: 0.1}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -683,7 +684,7 @@ Transform:
   m_GameObject: {fileID: 1294270647}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.185, y: 0, z: 0}
+  m_LocalPosition: {x: 0.18, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1008,6 +1009,7 @@ MonoBehaviour:
   leftLegRb: {fileID: 0}
   rightLegRb: {fileID: 0}
   torqueForce: 2
+  maxTorque: 2
 --- !u!1 &1525307585
 GameObject:
   m_ObjectHideFlags: 0
