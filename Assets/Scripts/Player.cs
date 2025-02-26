@@ -37,17 +37,27 @@ public class Player : MonoBehaviour
     }
 
     void Move(){
-        float clampedRightLegTorque = Mathf.Clamp(rightLegTorque * torqueForce, -maxTorque, maxTorque);
-        float clampedLeftLegTorque = Mathf.Clamp(leftLegTorque * torqueForce, -maxTorque, maxTorque);
-        
-        rightLegRb.AddTorque(clampedRightLegTorque);
-        leftLegRb.AddTorque(clampedLeftLegTorque);
-    }
+        Debug.Log(rightLegTorque);
+        Debug.Log(leftLegTorque);
 
-    void OnRightLeg(InputValue val){
-        rightLegTorque = val.Get<float>();
-    }
-    void OnLeftLeg(InputValue val){
-        leftLegTorque = val.Get<float>();
+        if (rightLegTorque != 0f)
+        {
+            float clampedRightLegTorque = Mathf.Clamp(rightLegTorque * torqueForce, -maxTorque, maxTorque);
+            rightLegRb.AddTorque(clampedRightLegTorque);
+        }
+        else
+        {
+            rightLegRb.angularVelocity = 0f;
+        }
+
+        if (leftLegTorque != 0f)
+        {
+            float clampedLeftLegTorque = Mathf.Clamp(leftLegTorque * torqueForce, -maxTorque, maxTorque);
+            leftLegRb.AddTorque(clampedLeftLegTorque);
+        }
+        else
+        {
+            leftLegRb.angularVelocity = 0f;
+        }
     }
 }

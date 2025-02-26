@@ -310,17 +310,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.114999995}
+  m_Offset: {x: 0, y: 0.359375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -3.3333335}
-    oldSize: {x: 0.24, y: 0.03}
+    oldSize: {x: 0.75, y: 0.09375}
     newSize: {x: 0.24, y: 0.03}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24, y: 0.029999994}
+  m_Size: {x: 0.75, y: 0.09375}
   m_EdgeRadius: 0
 --- !u!50 &1113246751
 Rigidbody2D:
@@ -482,8 +482,8 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0.09, y: 0.1}
-  m_ConnectedAnchor: {x: -0.09, y: 0.1}
+  m_Anchor: {x: 0.28, y: 0.31}
+  m_ConnectedAnchor: {x: -0.28199998, y: 0.31}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -502,14 +502,14 @@ HingeJoint2D:
   m_GameObject: {fileID: 1113246749}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 1525307588}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.09, y: 0.1}
-  m_ConnectedAnchor: {x: -0.09, y: 0.1}
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: -0.28, y: 0.31}
+  m_ConnectedAnchor: {x: -0.28, y: 0.31}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -684,7 +684,7 @@ Transform:
   m_GameObject: {fileID: 1294270647}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 0, z: 0}
+  m_LocalPosition: {x: 0.562, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -724,17 +724,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.09, y: 0.055}
+  m_Offset: {x: -0.28125, y: 0.171875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 5, y: -0.11111111}
-    oldSize: {x: 0.02, y: 0.09}
+    oldSize: {x: 0.0625, y: 0.28125}
     newSize: {x: 0.02, y: 0.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.019999996, y: 0.09}
+  m_Size: {x: 0.0625, y: 0.28125}
   m_EdgeRadius: 0
 --- !u!50 &1294270650
 Rigidbody2D:
@@ -876,7 +876,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -0.083333336}
-    oldSize: {x: 0.24, y: 0.12}
+    oldSize: {x: 0.75, y: 0.375}
     newSize: {x: 0.24, y: 0.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1078,17 +1078,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.09, y: 0.055}
+  m_Offset: {x: -0.28125, y: 0.171875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 5, y: -0.11111111}
-    oldSize: {x: 0.02, y: 0.09}
+    oldSize: {x: 0.0625, y: 0.28125}
     newSize: {x: 0.02, y: 0.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.019999996, y: 0.09}
+  m_Size: {x: 0.0625, y: 0.28125}
   m_EdgeRadius: 0
 --- !u!50 &1525307588
 Rigidbody2D:
