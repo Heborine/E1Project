@@ -37,7 +37,9 @@ public class Player : MonoBehaviour
     }
 
     void Move(){
-        Debug.Log(rightLegTorque);
+        rightLegRb.AddTorque(Mathf.Clamp(rightLegTorque * torqueForce, -maxTorque, maxTorque));
+        leftLegRb.AddTorque(Mathf.Clamp(leftLegTorque * torqueForce, -maxTorque, maxTorque));
+        /*Debug.Log(rightLegTorque);
         Debug.Log(leftLegTorque);
 
         if (rightLegTorque != 0f)
@@ -58,6 +60,6 @@ public class Player : MonoBehaviour
         else
         {
             leftLegRb.angularVelocity = 0f;
-        }
+        }*/
     }
 }
