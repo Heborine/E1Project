@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     public float jumpForce = 10f;
     [Header("Leg Assignments")]
     [SerializeField]
+    public GameObject leftLeg;
+    [SerializeField]
+    public GameObject rightLeg;
+    [SerializeField]
     public Rigidbody2D leftLegRb;
     [SerializeField]
     public Rigidbody2D rightLegRb;
@@ -20,6 +24,11 @@ public class Player : MonoBehaviour
     private float maxTorque = 2f;
     float rightLegTorque = 0f;
     float leftLegTorque = 0f;
+    // [SerializeField]
+    // private HingeJoint2D leftHinge;
+    // [SerializeField]
+    // private HingeJoint2D rightHinge;
+
     // bool isLeftLegGrounded = false;
     // bool isRightLegGrounded = false;
     bool isGrounded = false;
@@ -77,6 +86,9 @@ public class Player : MonoBehaviour
             // isLeftLegGrounded = false;
             // isRightLegGrounded = false;
             isGrounded = false;
+            // rightHinge.enabled(false);
+            leftLeg.SetActive(false);
+            rightLeg.SetActive(false);
         }
     }
 
@@ -86,6 +98,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log("landed");
             isGrounded = true;
+            leftLeg.SetActive(true);
+            rightLeg.SetActive(true);
             // isLeftLegGrounded = true;
             // if (collision.collider == leftLegRb.GetComponent<Collider2D>())
             // {
