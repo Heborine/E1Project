@@ -23,6 +23,10 @@ public class Player : MonoBehaviour
     // bool isLeftLegGrounded = false;
     // bool isRightLegGrounded = false;
     bool isGrounded = false;
+    public bool isDead = false;
+    public float deathTimer = 0f;
+    [SerializeField]
+    public float timeOfDeath = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +37,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(!isDead)
+        {
+            Move();
+        }
     }
 
     void OnRightLegMove(InputValue val)
@@ -51,7 +58,7 @@ public class Player : MonoBehaviour
     }
 
     void OnJump(){
-        if (isGrounded)
+        if(isGrounded && !isDead)
         // if (isLeftLegGrounded || isRightLegGrounded)
         {
             // float leftLegRotation = Mathf.Clamp(Mathf.Abs(leftLegRb.rotation), 0f, 90f);
@@ -75,7 +82,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if(collision.gameObject.CompareTag("Ground"))
         {
             Debug.Log("landed");
             isGrounded = true;
@@ -109,4 +116,31 @@ public class Player : MonoBehaviour
     //         // }
     //     }
     // }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        Debug.Log("OnTrigger");
+        // Debug.Log(this.CompareTag("DeathRegion"));
+        // Debug.Log(other.CompareTag("Ground"));
+        if(other.CompareTag("Ground"))
+        // if(this.CompareTag("DeathRegion") && other.CompareTag("Ground"))
+        {
+            deathTimer += Time.deltaTime;
+
+            if(deathTimer >= timeOfDeath && !isDead)
+            {
+                isDead = true;
+                Debug.Log("Player is dead!");
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Ground"))
+        // if(this.CompareTag("DeathRegion") && other.CompareTag("Ground"))
+        {
+            deathTimer = 0f; 
+        }
+    }
 }
