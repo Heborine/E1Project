@@ -595,7 +595,7 @@ MonoBehaviour:
   leftLegRb: {fileID: 1525307588}
   rightLegRb: {fileID: 1294270650}
   torqueForce: 1
-  maxTorque: 0.25
+  maxTorque: 1
   isDead: 0
   deathTimer: 0
   timeOfDeath: 5
