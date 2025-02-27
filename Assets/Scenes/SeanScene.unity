@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 471798342}
   - component: {fileID: 471798344}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,17 +310,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.114999995}
+  m_Offset: {x: 0, y: 0.359375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -3.3333335}
-    oldSize: {x: 0.24, y: 0.03}
+    oldSize: {x: 0.75, y: 0.09375}
     newSize: {x: 0.24, y: 0.03}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24, y: 0.029999994}
+  m_Size: {x: 0.75, y: 0.09375}
   m_EdgeRadius: 0
 --- !u!50 &1113246751
 Rigidbody2D:
@@ -361,10 +361,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd9bb441b9c2842a40d584454f9c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableTopRb: {fileID: 1113246751}
+  jumpForce: 10
   leftLegRb: {fileID: 1525307588}
   rightLegRb: {fileID: 1294270650}
   torqueForce: 1
-  maxTorque: 0.3
+  maxTorque: 1
 --- !u!212 &1113246753
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -428,14 +430,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113246749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1294270648}
   - {fileID: 1525307586}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1152396633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1113246755
 MonoBehaviour:
@@ -482,8 +484,8 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0.09, y: 0.1}
-  m_ConnectedAnchor: {x: -0.09, y: 0.1}
+  m_Anchor: {x: 0.28, y: 0.31}
+  m_ConnectedAnchor: {x: -0.28199998, y: 0.311}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -507,9 +509,9 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.09, y: 0.1}
-  m_ConnectedAnchor: {x: -0.09, y: 0.1}
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: -0.28, y: 0.31}
+  m_ConnectedAnchor: {x: -0.28, y: 0.31}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -519,6 +521,38 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!1 &1152396632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1152396633}
+  m_Layer: 0
+  m_Name: Table
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1152396633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152396632}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1113246754}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1288586322
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,8 +717,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294270647}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.562, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -724,17 +758,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.09, y: 0.055}
+  m_Offset: {x: -0.28125, y: 0.171875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 5, y: -0.11111111}
-    oldSize: {x: 0.02, y: 0.09}
+    oldSize: {x: 0.0625, y: 0.28125}
     newSize: {x: 0.02, y: 0.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.019999996, y: 0.09}
+  m_Size: {x: 0.0625, y: 0.28125}
   m_EdgeRadius: 0
 --- !u!50 &1294270650
 Rigidbody2D:
@@ -876,7 +910,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -0.083333336}
-    oldSize: {x: 0.24, y: 0.12}
+    oldSize: {x: 0.75, y: 0.375}
     newSize: {x: 0.24, y: 0.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1006,6 +1040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd9bb441b9c2842a40d584454f9c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableTopRb: {fileID: 0}
+  jumpForce: 10
   leftLegRb: {fileID: 0}
   rightLegRb: {fileID: 0}
   torqueForce: 2
@@ -1038,7 +1074,7 @@ Transform:
   m_GameObject: {fileID: 1525307585}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1078,17 +1114,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.09, y: 0.055}
+  m_Offset: {x: -0.28125, y: 0.171875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 5, y: -0.11111111}
-    oldSize: {x: 0.02, y: 0.09}
+    oldSize: {x: 0.0625, y: 0.28125}
     newSize: {x: 0.02, y: 0.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.019999996, y: 0.09}
+  m_Size: {x: 0.0625, y: 0.28125}
   m_EdgeRadius: 0
 --- !u!50 &1525307588
 Rigidbody2D:
@@ -1282,7 +1318,7 @@ Transform:
   m_GameObject: {fileID: 1632600968}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.644, y: 0.398, z: 0}
+  m_LocalPosition: {x: 0.916, y: 0.398, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1554,5 +1590,5 @@ SceneRoots:
   - {fileID: 2052300212}
   - {fileID: 1632600971}
   - {fileID: 1388478062}
-  - {fileID: 1113246754}
   - {fileID: 471798343}
+  - {fileID: 1152396633}
