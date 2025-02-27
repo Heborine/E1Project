@@ -14,7 +14,15 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.transform.position.x - transform.position.x > 0.3) transform.position = new Vector2(player.transform.position.x - 0.3f, transform.position.y);
-        else if(player.transform.position.x - transform.position.x < -0.3) transform.position = new Vector2(player.transform.position.x + 0.3f, transform.position.y);
+        Vector3 newPos = transform.position;
+
+        // Horizontal follow
+        if(player.transform.position.x - transform.position.x > 0.5) newPos.x = player.transform.position.x - 0.7f;
+        else if(player.transform.position.x - transform.position.x < -0.3) newPos.x = player.transform.position.x + 0.7f;
+
+        if(player.transform.position.y - transform.position.y > 0.3) newPos.y = player.transform.position.y - 0.4f;
+        else if(player.transform.position.y - transform.position.y < -0.3) newPos.y = player.transform.position.y + 0.4f;
+
+        transform.position = newPos;
     }
 }
