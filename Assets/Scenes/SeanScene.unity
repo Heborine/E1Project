@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 471798342}
   - component: {fileID: 471798344}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,6 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd9bb441b9c2842a40d584454f9c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableTopRb: {fileID: 1113246751}
+  jumpForce: 10
   leftLegRb: {fileID: 1525307588}
   rightLegRb: {fileID: 1294270650}
   torqueForce: 1
@@ -715,7 +717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294270647}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.562, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1038,6 +1040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd9bb441b9c2842a40d584454f9c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableTopRb: {fileID: 0}
+  jumpForce: 10
   leftLegRb: {fileID: 0}
   rightLegRb: {fileID: 0}
   torqueForce: 2
