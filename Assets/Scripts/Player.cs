@@ -5,6 +5,10 @@ public class Player : MonoBehaviour
 {
     [Header("Table Settings")]
     [SerializeField]
+    public GameObject grabPosition;
+    [SerializeField]
+    public GameObject grabbablePerson;
+    [SerializeField]
     public Rigidbody2D tableTopRb;
     [SerializeField]
     public float jumpForce = 10f;
@@ -36,6 +40,8 @@ public class Player : MonoBehaviour
     public float deathTimer = 0f;
     [SerializeField]
     public float timeOfDeath = 5f;
+    bool personGrabbed = false;
+    float secondsToGrab = 0.5f, secondsSoFar = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +55,16 @@ public class Player : MonoBehaviour
         if(!isDead)
         {
             Move();
+            GetComponent<Rigidbody2D>().position = new Vector2(tableTopRb.transform.position.x, tableTopRb.transform.position.y);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (personGrabbed && (Mathf.Abs(grabPosition.transform.position.x - grabbablePerson.transform.position.x) >= 0.05f || Mathf.Abs(grabPosition.transform.position.y - grabbablePerson.transform.position.y) >= 0.05f)) {
+            secondsSoFar += Time.deltaTime;
+            float t = secondsSoFar / secondsToGrab;
+            grabbablePerson.transform.position = Vector2.Lerp(grabbablePerson.transform.position, new Vector2(grabPosition.transform.position.x, grabPosition.transform.position.y), t);
         }
     }
 
@@ -59,6 +75,16 @@ public class Player : MonoBehaviour
     void OnLeftLegMove(InputValue val)
     {
         leftLegTorque = val.Get<float>();
+    }
+
+    void OnClick(InputValue val)
+    {
+        if(grabbablePerson != null) {
+            grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0;
+            // grabbablePerson.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            grabbablePerson.GetComponent<Collider2D>().enabled = false;
+            personGrabbed = true;
+        }
     }
 
     void Move(){
@@ -155,6 +181,15 @@ public class Player : MonoBehaviour
         // if(this.CompareTag("DeathRegion") && other.CompareTag("Ground"))
         {
             deathTimer = 0f; 
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.tag);
+        if(collision.CompareTag("Throwable")) {
+            grabbablePerson = collision.gameObject;
+            Debug.Log("Found throwable person: " + grabbablePerson);
         }
     }
 }
