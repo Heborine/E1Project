@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D tableTopRb;
     [SerializeField]
     public float jumpForce = 10f;
+
     [Header("Leg Assignments")]
     [SerializeField]
     public GameObject leftLeg;
@@ -21,6 +23,11 @@ public class Player : MonoBehaviour
     public Rigidbody2D leftLegRb;
     [SerializeField]
     public Rigidbody2D rightLegRb;
+    [SerializeField]
+    public HingeJoint2D leftLegHinge;
+    [SerializeField]
+    public HingeJoint2D rightLegHinge;
+
     [Header("Torque Settings")]
     [SerializeField]
     private float torqueForce = 2f;
@@ -28,14 +35,8 @@ public class Player : MonoBehaviour
     private float maxTorque = 2f;
     float rightLegTorque = 0f;
     float leftLegTorque = 0f;
-    // [SerializeField]
-    // private HingeJoint2D leftHinge;
-    // [SerializeField]
-    // private HingeJoint2D rightHinge;
 
-    // bool isLeftLegGrounded = false;
-    // bool isRightLegGrounded = false;
-    bool isGrounded = false;
+    bool isGrounded = true;
     public bool isDead = false;
     public float deathTimer = 0f;
     [SerializeField]
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // tableTopRb = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -81,7 +82,6 @@ public class Player : MonoBehaviour
     {
         if(grabbablePerson != null) {
             grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0;
-            // grabbablePerson.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             grabbablePerson.GetComponent<Collider2D>().enabled = false;
             personGrabbed = true;
         }
@@ -94,10 +94,7 @@ public class Player : MonoBehaviour
 
     void OnJump(){
         if(isGrounded && !isDead)
-        // if (isLeftLegGrounded || isRightLegGrounded)
         {
-            // float leftLegRotation = Mathf.Clamp(Mathf.Abs(leftLegRb.rotation), 0f, 90f);
-            // float rightLegRotation = Mathf.Clamp(Mathf.Abs(rightLegRb.rotation), 0f, 90f);
             float leftLegRotation = leftLegRb.rotation;
             float rightLegRotation = rightLegRb.rotation;
             
@@ -109,10 +106,7 @@ public class Player : MonoBehaviour
             averageDirection.Normalize();
 
             tableTopRb.AddForce(averageDirection * jumpForce, ForceMode2D.Impulse);
-            // isLeftLegGrounded = false;
-            // isRightLegGrounded = false;
             isGrounded = false;
-            // rightHinge.enabled(false);
             leftLeg.SetActive(false);
             rightLeg.SetActive(false);
         }
@@ -120,57 +114,69 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
+        if(collision.gameObject.CompareTag("Ground") && !isGrounded)
         {
-            Debug.Log("landed");
             isGrounded = true;
+            // transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3 (0, 20f, 0), Time.deltaTime * 10f);
+            // transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,0,0), Time.deltaTime * 1.5f);
+            // StartCoroutine(RegrowLegs());        
             leftLeg.SetActive(true);
             rightLeg.SetActive(true);
-            // isLeftLegGrounded = true;
-            // if (collision.collider == leftLegRb.GetComponent<Collider2D>())
-            // {
-            //     isLeftLegGrounded = true;
-            // }
-
-            // if (collision.collider == rightLegRb.GetComponent<Collider2D>())
-            // {
-            //     isRightLegGrounded = true;
-            // }
         }
     }
 
-    // void OnCollisionExit2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Ground"))
-    //     {
-    //         Debug.Log("lift off");
-    //         isLeftLegGrounded = false;
-    //         // if (collision.collider == leftLegRb.GetComponent<Collider>())
-    //         // {
-    //         //     isLeftLegGrounded = false;
-    //         // }
+    IEnumerator RegrowLegs()
+    {
+        Vector3 target = transform.position + new Vector3(0, 0.3f, 0);
+        float moveSp = 1.5f;
+        float timeElapsed = 0f;
+        tableTopRb.gravityScale = 0f;
+        while (timeElapsed < 1f)
+        {
+            transform.position = Vector3.Lerp(transform.position, target, timeElapsed);
+            timeElapsed += Time.deltaTime * moveSp;
+            yield return null;
+        }
+        transform.position = target;
 
-    //         // if (collision.collider == rightLegRb.GetComponent<Collider>())
-    //         // {
-    //         //     isRightLegGrounded = false;
-    //         // }
-    //     }
-    // }
+        Quaternion targetRot = Quaternion.Euler(0, 0, 0);
+        float rotSp = 1.5f;
+        timeElapsed = 0f;
+
+        while (timeElapsed < 1f)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotSp * Time.deltaTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = targetRot;
+
+        // leftLegRb.rotation = 0f;
+        // rightLegRb.rotation = 0f;
+
+        leftLeg.SetActive(true);
+        rightLeg.SetActive(true);
+
+        leftLegRb.rotation = 0f;
+        rightLegRb.rotation = 0f;
+        leftLeg.transform.localPosition = new Vector3(0, -0.001f, 0);
+        rightLeg.transform.localPosition = new Vector3(0.562f, -0.001f, 0);
+
+        tableTopRb.gravityScale = 1f;
+    }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("OnTrigger");
-        // Debug.Log(this.CompareTag("DeathRegion"));
-        // Debug.Log(other.CompareTag("Ground"));
         if(other.CompareTag("Ground"))
-        // if(this.CompareTag("DeathRegion") && other.CompareTag("Ground"))
         {
             deathTimer += Time.deltaTime;
 
             if(deathTimer >= timeOfDeath && !isDead)
             {
                 isDead = true;
-                Debug.Log("Player is dead!");
+                leftLegHinge.enabled = false;
+                rightLegHinge.enabled = false;
             }
         }
     }
@@ -178,7 +184,6 @@ public class Player : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Ground"))
-        // if(this.CompareTag("DeathRegion") && other.CompareTag("Ground"))
         {
             deathTimer = 0f; 
         }
