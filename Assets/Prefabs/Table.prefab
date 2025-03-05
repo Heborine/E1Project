@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 9074149081731781862}
   m_Layer: 0
   m_Name: TableTop
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -652,8 +652,8 @@ MonoBehaviour:
   rightLegRb: {fileID: 4107970144192851557}
   leftLegHinge: {fileID: 1369389656833124397}
   rightLegHinge: {fileID: 6998959265107931993}
-  torqueForce: 0.25
-  maxTorque: 0.25
+  torqueForce: 1
+  maxTorque: 1
   isDead: 0
   deathTimer: 0
   timeOfDeath: 5
