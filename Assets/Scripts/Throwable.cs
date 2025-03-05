@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ThrowablePerson : MonoBehaviour
 {
-    bool thrown = false;
+    bool grabbed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,11 +16,11 @@ public class ThrowablePerson : MonoBehaviour
         
     }
 
-    public bool isThrown() {
-        return thrown;
+    public bool isGrabbed() {
+        return grabbed;
     }
 
-    public void setThrown(bool b) {
-        thrown = b;
+    public void setGrabbed(bool b) {
+        grabbed = b;
     }
 }

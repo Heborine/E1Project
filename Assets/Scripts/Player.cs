@@ -86,25 +86,31 @@ public class Player : MonoBehaviour
     void OnGrab(InputValue val)
     {
         if (grabbablePerson != null && personGrabbed == false) {
-            Debug.Log("Person grabbed");
             grabbablePerson.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0f, 0f);
             grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0;
             grabbablePerson.GetComponent<Collider2D>().enabled = false;
             personGrabbed = true;
         } else if (grabbablePerson != null && personGrabbed == true) {
-            Debug.Log("Person thrown");
             Vector2 throwForce;
             float direction = Random.Range(0f, 1f);
             if (direction < 0.5f)
                 throwForce = new Vector2(Random.Range(-5f, -3.5f), Mathf.Abs(Random.Range(1.5f, 3.5f))).normalized;
             else
                 throwForce = new Vector2(Random.Range(3.5f, 5f), Mathf.Abs(Random.Range(1.5f, 3.5f))).normalized;
+
+            float throwTorque;
+            float torqueDir = Random.Range(0f, 1f);
+            if (torqueDir < 0.5f)
+                throwTorque = Random.Range(-10f, -7.5f);
+            else
+                throwTorque = Random.Range(7.5f, 10f);
             personGrabbed = false;
             grabbablePerson.GetComponent<Collider2D>().enabled = true;
-            if (grabbablePerson.GetComponent<Rigidbody2D>().linearVelocity == new Vector2(0f, 0f))
-                grabbablePerson.GetComponent<Rigidbody2D>().AddForce(throwStrength * throwForce);
+            grabbablePerson.GetComponent<Rigidbody2D>().AddForce(throwStrength * throwForce);
+            grabbablePerson.GetComponent<Rigidbody2D>().AddTorque(throwTorque);
             grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
             grabbablePerson = null;
+            secondsSoFar = 0f;
         }
     }
 
@@ -189,15 +195,20 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Throwable") && !collision.GetComponent<ThrowablePerson>().isThrown()) {
+        if(grabbablePerson == null && collision.CompareTag("Throwable") && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
             grabbablePerson = collision.gameObject;
-            grabbablePerson.GetComponent<ThrowablePerson>().setThrown(true);
+            grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(true);
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if(other.CompareTag("Ground"))
+        if(grabbablePerson == null && collision.CompareTag("Throwable") && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
+            grabbablePerson = collision.gameObject;
+            grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(true);
+        }
+
+        if(collision.CompareTag("Ground"))
         {
             deathTimer += Time.deltaTime;
 

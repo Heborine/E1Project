@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce9b43b360eebdd18b457dfb7bf3712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yOffset: 0.8
+  yOffset: 0.4
 --- !u!1 &3144685147187646371
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +654,7 @@ MonoBehaviour:
   rightLegHinge: {fileID: 6998959265107931993}
   torqueForce: 1
   maxTorque: 1
+  throwStrength: 0.5
   isDead: 0
   deathTimer: 0
   timeOfDeath: 5
