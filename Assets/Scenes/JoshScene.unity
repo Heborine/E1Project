@@ -751,6 +751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table
       objectReference: {fileID: 0}
+    - target: {fileID: 6040348868281697535, guid: 0fb8517494838a083bb0c03231aa39a3, type: 3}
+      propertyPath: throwStrength
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8813711691820675304, guid: 0fb8517494838a083bb0c03231aa39a3, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.311

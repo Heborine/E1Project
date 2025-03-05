@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
+using System;
+using Random=UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
@@ -12,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     public Rigidbody2D tableTopRb;
     [SerializeField]
-    public float jumpForce = 10f;
+    public float jumpForce = 100f;
 
     [Header("Leg Assignments")]
     [SerializeField]
@@ -33,6 +36,8 @@ public class Player : MonoBehaviour
     private float torqueForce = 2f;
     [SerializeField]
     private float maxTorque = 2f;
+    [SerializeField]
+    private float throwStrength = 0.5f;
     float rightLegTorque = 0f;
     float leftLegTorque = 0f;
 
@@ -78,12 +83,28 @@ public class Player : MonoBehaviour
         leftLegTorque = val.Get<float>();
     }
 
-    void OnClick(InputValue val)
+    void OnGrab(InputValue val)
     {
-        if(grabbablePerson != null) {
+        if (grabbablePerson != null && personGrabbed == false) {
+            Debug.Log("Person grabbed");
+            grabbablePerson.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0f, 0f);
             grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0;
             grabbablePerson.GetComponent<Collider2D>().enabled = false;
             personGrabbed = true;
+        } else if (grabbablePerson != null && personGrabbed == true) {
+            Debug.Log("Person thrown");
+            Vector2 throwForce;
+            float direction = Random.Range(0f, 1f);
+            if (direction < 0.5f)
+                throwForce = new Vector2(Random.Range(-5f, -3.5f), Mathf.Abs(Random.Range(1.5f, 3.5f))).normalized;
+            else
+                throwForce = new Vector2(Random.Range(3.5f, 5f), Mathf.Abs(Random.Range(1.5f, 3.5f))).normalized;
+            Debug.Log(throwForce.magnitude);
+            personGrabbed = false;
+            grabbablePerson.GetComponent<Collider2D>().enabled = true;
+            if (grabbablePerson.GetComponent<Rigidbody2D>().linearVelocity == new Vector2(0f, 0f))
+                grabbablePerson.GetComponent<Rigidbody2D>().AddForce(throwStrength * throwForce);
+            grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
         }
     }
 
