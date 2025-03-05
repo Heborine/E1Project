@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 95657806}
   - component: {fileID: 95657805}
   - component: {fileID: 95657804}
+  - component: {fileID: 95657808}
   m_Layer: 0
   m_Name: Circle (2)
   m_TagString: Throwable
@@ -271,6 +272,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &95657808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95657803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d1da1d83584167e9b260af99aa1ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &636048079
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +581,7 @@ GameObject:
   - component: {fileID: 1051709329}
   - component: {fileID: 1051709328}
   - component: {fileID: 1051709327}
+  - component: {fileID: 1051709331}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Throwable
@@ -708,6 +722,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1051709331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051709326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d1da1d83584167e9b260af99aa1ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1212652533
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +746,7 @@ GameObject:
   - component: {fileID: 1212652536}
   - component: {fileID: 1212652535}
   - component: {fileID: 1212652534}
+  - component: {fileID: 1212652538}
   m_Layer: 0
   m_Name: Circle (1)
   m_TagString: Throwable
@@ -860,6 +887,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1212652538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212652533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d1da1d83584167e9b260af99aa1ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1312669062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1117,7 @@ GameObject:
   - component: {fileID: 1912051449}
   - component: {fileID: 1912051448}
   - component: {fileID: 1912051447}
+  - component: {fileID: 1912051451}
   m_Layer: 0
   m_Name: Circle (3)
   m_TagString: Throwable
@@ -1218,6 +1258,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912051451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912051446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d1da1d83584167e9b260af99aa1ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2091998262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3006518674361198282, guid: 0fb8517494838a083bb0c03231aa39a3, type: 3}

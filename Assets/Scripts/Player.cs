@@ -99,12 +99,12 @@ public class Player : MonoBehaviour
                 throwForce = new Vector2(Random.Range(-5f, -3.5f), Mathf.Abs(Random.Range(1.5f, 3.5f))).normalized;
             else
                 throwForce = new Vector2(Random.Range(3.5f, 5f), Mathf.Abs(Random.Range(1.5f, 3.5f))).normalized;
-            Debug.Log(throwForce.magnitude);
             personGrabbed = false;
             grabbablePerson.GetComponent<Collider2D>().enabled = true;
             if (grabbablePerson.GetComponent<Rigidbody2D>().linearVelocity == new Vector2(0f, 0f))
                 grabbablePerson.GetComponent<Rigidbody2D>().AddForce(throwStrength * throwForce);
             grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
+            grabbablePerson = null;
         }
     }
 
@@ -187,6 +187,14 @@ public class Player : MonoBehaviour
         tableTopRb.gravityScale = 1f;
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Throwable") && !collision.GetComponent<ThrowablePerson>().isThrown()) {
+            grabbablePerson = collision.gameObject;
+            grabbablePerson.GetComponent<ThrowablePerson>().setThrown(true);
+        }
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if(other.CompareTag("Ground"))
@@ -207,15 +215,6 @@ public class Player : MonoBehaviour
         if(other.CompareTag("Ground"))
         {
             deathTimer = 0f; 
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.tag);
-        if(collision.CompareTag("Throwable")) {
-            grabbablePerson = collision.gameObject;
-            Debug.Log("Found throwable person: " + grabbablePerson);
         }
     }
 }
