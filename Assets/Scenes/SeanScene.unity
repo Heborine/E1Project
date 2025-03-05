@@ -1327,18 +1327,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table
       objectReference: {fileID: 0}
-    - target: {fileID: 8099394563530727798, guid: bf5777ceebef41c46849e573d04da9ed, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711173985795955727, guid: bf5777ceebef41c46849e573d04da9ed, type: 3}
-      propertyPath: maxTorque
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711173985795955727, guid: bf5777ceebef41c46849e573d04da9ed, type: 3}
-      propertyPath: torqueForce
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
