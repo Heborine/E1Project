@@ -261,6 +261,11 @@ MonoBehaviour:
   nextPatrolPos: 0
   posDetectRad: 0
   p: {fileID: 0}
+  distShouldRun: 0
+  distToPlayer: 0
+  alertIcon: {fileID: 0}
+  shouldIdle: 0
+  timeToIdle: 0
 --- !u!1 &135642770
 GameObject:
   m_ObjectHideFlags: 0
