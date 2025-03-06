@@ -25,7 +25,7 @@ public class DeathEffect : MonoBehaviour
     public void FlyOutOfWindow() 
     {
         rb.linearVelocity = Vector2.zero;
-        rb.freezeRotation = true;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         rb.angularVelocity = rotationSpeed;
         isDying = false;
         Destroy(gameObject, effectTiming);
