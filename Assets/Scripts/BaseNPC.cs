@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Jobs;
 
@@ -14,6 +15,37 @@ public class BaseNPC : MonoBehaviour
     int incrementPos;
 
     [SerializeField] Player p;
+    [SerializeField] float distShouldRun;
+    [Tooltip("note - this is just for debugging you don't need to edit it")]
+    [SerializeField] float distToPlayer;
+
+    [SerializeField] GameObject alertIcon;
+    [SerializeField] bool shouldIdle;
+    [SerializeField] float timeToIdle;
+
+    private void Start()
+    {
+        alertIcon.SetActive(false);
+    }
+
+    private void FixedUpdate()
+    {
+        float distToPlayer = Vector2.Distance(this.transform.position, p.transform.position);
+        if (distToPlayer < distShouldRun && p.GetComponent<Rigidbody2D>().linearVelocity != Vector2.zero)
+        {
+            RunAway();
+            alertIcon.SetActive(true);
+        }
+        else if(shouldIdle)
+        {
+            Idle();
+        }
+        else
+        {
+            alertIcon.SetActive(false);
+            Patrol();
+        }
+    }
 
     void Patrol() 
     {
@@ -25,6 +57,7 @@ public class BaseNPC : MonoBehaviour
                 incrementPos *= -1;
             }
             nextPatrolPos += incrementPos;
+            IdleTimer(timeToIdle);
         }
     }
 
@@ -36,5 +69,12 @@ public class BaseNPC : MonoBehaviour
     void RunAway() 
     {
         rb.linearVelocity = -(Vector2)(p.transform.position - transform.position).normalized * runSpeed;
+    }
+
+    IEnumerator IdleTimer(float timing)
+    {
+        shouldIdle = true;
+        yield return new WaitForSeconds(timing);
+        shouldIdle = false;
     }
 }
