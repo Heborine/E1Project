@@ -36,6 +36,12 @@ public class MenuButton : MonoBehaviour
         StartCoroutine(SwitchScene(2f, "Game"));
     }
 
+    public void ExitGame()
+    {
+        // Should work for WebGL builds
+        Application.Quit();
+    }
+
     private IEnumerator SwitchScene(float d, string sc)
     {
         yield return new WaitForSeconds(d);
