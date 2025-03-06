@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7737659354244500974}
   - component: {fileID: 5962511437683486277}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrabPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4649724280015752077}
   - component: {fileID: 2491256437781784980}
   - component: {fileID: 1369389656833124397}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 218135283970697798}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Table
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 4107970144192851557}
   - component: {fileID: 7474497733563326187}
   - component: {fileID: 6998959265107931993}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3957533622100468099}
   - component: {fileID: 2634372425864901579}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DeathRegion
   m_TagString: DeathRegion
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 4748701227584096665}
   - component: {fileID: 5236858926322419535}
   - component: {fileID: 9074149081731781862}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TableTop
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -658,6 +658,7 @@ MonoBehaviour:
   isDead: 0
   deathTimer: 0
   timeOfDeath: 5
+  GameOver: {fileID: 0}
 --- !u!50 &2474577778679056916
 Rigidbody2D:
   serializedVersion: 5

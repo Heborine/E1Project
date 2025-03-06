@@ -23,6 +23,8 @@ public class BaseNPC : MonoBehaviour
     [SerializeField] bool shouldIdle;
     [SerializeField] float timeToIdle;
 
+    private bool thrown = false;
+
     private void Start()
     {
         alertIcon.SetActive(false);
@@ -46,6 +48,10 @@ public class BaseNPC : MonoBehaviour
             Patrol();
         }
     }
+
+    public bool IsThrown() { return thrown; }
+
+    public void SetThrown(bool b) { thrown = b; }
 
     void Patrol() 
     {
@@ -76,5 +82,12 @@ public class BaseNPC : MonoBehaviour
         shouldIdle = true;
         yield return new WaitForSeconds(timing);
         shouldIdle = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Window") && IsThrown()) {
+            this.GetComponent<DeathEffect>().FlyOutOfWindow();
+        }
     }
 }

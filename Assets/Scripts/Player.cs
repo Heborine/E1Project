@@ -98,6 +98,8 @@ public class Player : MonoBehaviour
             grabbablePerson.GetComponent<Collider2D>().enabled = false;
             personGrabbed = true;
         } else if (grabbablePerson != null && personGrabbed == true) {
+            if (grabbablePerson.CompareTag("NPC")) grabbablePerson.GetComponent<BaseNPC>().SetThrown(true);
+
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 throwForce = (mousePosition - (Vector2)grabbablePerson.transform.position).normalized;
             Debug.Log(mousePosition.x + ", " + grabbablePerson.transform.position.x);
@@ -201,7 +203,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(grabbablePerson == null && collision.CompareTag("Throwable") && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
+        if(grabbablePerson == null && throwable(collision) && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
             grabbablePerson = collision.gameObject;
             grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(true);
         }
@@ -209,7 +211,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if(grabbablePerson == null && collision.CompareTag("Throwable") && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
+        if(grabbablePerson == null && throwable(collision) && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
             grabbablePerson = collision.gameObject;
             grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(true);
         }
@@ -233,5 +235,10 @@ public class Player : MonoBehaviour
         {
             deathTimer = 0f; 
         }
+    }
+
+    bool throwable(Collider2D collision) {
+        if (collision.CompareTag("Throwable") || collision.CompareTag("NPC")) return true;
+        return false;
     }
 }

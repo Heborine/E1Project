@@ -6,6 +6,7 @@ public class DeathEffect : MonoBehaviour
     [SerializeField] float effectTiming;
     private float scalePos;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float shrinkFactor = 0.9f;
     bool isDying = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +19,7 @@ public class DeathEffect : MonoBehaviour
     {
         if (isDying) 
         {
-            transform.localScale *= (1 - Time.deltaTime/effectTiming);
+            transform.localScale *= shrinkFactor * (1 - Time.deltaTime/effectTiming);
         }
     }
 
@@ -27,7 +28,7 @@ public class DeathEffect : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         rb.angularVelocity = rotationSpeed;
-        isDying = false;
+        isDying = true;
         Destroy(gameObject, effectTiming);
     }
 }
