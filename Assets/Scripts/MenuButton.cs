@@ -36,6 +36,11 @@ public class MenuButton : MonoBehaviour
         StartCoroutine(SwitchScene(2f, "Game"));
     }
 
+    public void Credits()
+    {
+        StartCoroutine(SwitchScene(2f, "Credits"));
+    }
+
     public void ExitGame()
     {
         // Should work for WebGL builds
