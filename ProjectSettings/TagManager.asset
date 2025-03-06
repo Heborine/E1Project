@@ -8,6 +8,7 @@ TagManager:
   - DeathRegion
   - Throwable
   - End
+  - Window
   layers:
   - Default
   - TransparentFX
