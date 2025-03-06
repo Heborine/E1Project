@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
@@ -49,6 +49,9 @@ public class Player : MonoBehaviour
     bool personGrabbed = false;
     float secondsToGrab = 0.5f, secondsSoFar = 0.0f;
 
+    [SerializeField]
+    public GameObject GameOver;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,6 +65,10 @@ public class Player : MonoBehaviour
         {
             Move();
             GetComponent<Rigidbody2D>().position = new Vector2(tableTopRb.transform.position.x, tableTopRb.transform.position.y);
+        }
+        else
+        {
+            GameOver.SetActive(true);
         }
     }
 
