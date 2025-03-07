@@ -32,7 +32,7 @@ public class BaseNPC : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float distToPlayer = Vector2.Distance(this.transform.position, p.transform.position);
+        float distToPlayer = Vector2.Distance(transform.position, p.transform.position);
         if (distToPlayer < distShouldRun && p.GetComponent<Rigidbody2D>().linearVelocity != Vector2.zero)
         {
             RunAway();
