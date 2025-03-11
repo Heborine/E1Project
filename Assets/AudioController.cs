@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AudioController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class AudioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space)){
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.F)){
             animatedTable.Play();
         }
         else{
