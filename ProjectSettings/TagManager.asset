@@ -53,5 +53,8 @@ TagManager:
   - name: Interactable Objects
     uniqueID: 3821475801
     locked: 0
+  - name: New Layer 3
+    uniqueID: 1624474953
+    locked: 0
   m_RenderingLayers:
   - Default
