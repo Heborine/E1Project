@@ -47,6 +47,11 @@ public class MenuButton : MonoBehaviour
         Application.Quit();
     }
 
+    public void Options()
+    {
+        StartCoroutine(SwitchScene(2f, "Options Menu"));
+    }
+
     private IEnumerator SwitchScene(float d, string sc)
     {
         yield return new WaitForSeconds(d);

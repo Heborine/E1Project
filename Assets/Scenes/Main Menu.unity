@@ -915,7 +915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7240344193513294175, guid: 50fe8c58fc95898a3b6848920e4c2841, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Credits
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 7240344193513294175, guid: 50fe8c58fc95898a3b6848920e4c2841, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
