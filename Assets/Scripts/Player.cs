@@ -203,7 +203,12 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collision detected");
+        Debug.Log(grabbablePerson == null);
+        Debug.Log(throwable(collision));
+        Debug.Log(!collision.GetComponent<ThrowablePerson>().isGrabbed());
         if(grabbablePerson == null && throwable(collision) && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
+            Debug.Log("Found person");
             grabbablePerson = collision.gameObject;
             grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(true);
         }

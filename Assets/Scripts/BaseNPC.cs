@@ -70,12 +70,10 @@ public class BaseNPC : MonoBehaviour
 
     void Patrol() 
     {
-        Debug.Log("patrolling");
         rb.linearVelocityX = (walkSpeed * Mathf.Sign(patrolPositions[nextPatrolPos].position.x - transform.position.x));
         //rb.linearVelocity = (Vector2)(patrolPositions[nextPatrolPos].position - transform.position).normalized * walkSpeed;
         if (Mathf.Abs(patrolPositions[nextPatrolPos].position.x - transform.position.x) < posDetectRad) 
         {
-            Debug.Log("node found");
             if (nextPatrolPos == patrolPositions.Length -1 || nextPatrolPos == 0) 
             {
                 incrementPos *= -1;
@@ -92,7 +90,6 @@ public class BaseNPC : MonoBehaviour
 
     void RunAway() 
     {
-        Debug.Log("run away!");
         //rb.linearVelocity = -(Vector2)(p.transform.position - transform.position).normalized * runSpeed;
         rb.linearVelocityX = -runSpeed * Mathf.Sign(p.transform.position.x - transform.position.x);
     }
