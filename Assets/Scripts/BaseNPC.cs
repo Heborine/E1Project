@@ -1,10 +1,11 @@
 using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Jobs;
 
 public class BaseNPC : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
+    Rigidbody2D rb;
     [SerializeField] float health;
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
@@ -12,7 +13,7 @@ public class BaseNPC : MonoBehaviour
     [SerializeField] Transform[] patrolPositions;
     [SerializeField] int nextPatrolPos = 0;
     [SerializeField] float posDetectRad;
-    int incrementPos;
+    int incrementPos = 1;
 
     [SerializeField] Player p;
     [SerializeField] float distShouldRun;
@@ -24,21 +25,32 @@ public class BaseNPC : MonoBehaviour
     [SerializeField] float timeToIdle;
 
     private bool thrown = false;
+    float dir = 1;
+
+    Animator npcAnim;
+    [SerializeField] string npcWalkAnimName = "isWalking";
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         alertIcon.SetActive(false);
+        npcAnim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
+        npcAnim.SetBool(npcWalkAnimName, rb.linearVelocityX != 0);
+
+        dir = transform.localScale.x;
+        flip();
+
         float distToPlayer = Vector2.Distance(transform.position, p.transform.position);
         if (distToPlayer < distShouldRun && p.GetComponent<Rigidbody2D>().linearVelocity != Vector2.zero)
         {
             RunAway();
             alertIcon.SetActive(true);
         }
-        else if(shouldIdle)
+        else if (shouldIdle)
         {
             Idle();
         }
@@ -47,6 +59,9 @@ public class BaseNPC : MonoBehaviour
             alertIcon.SetActive(false);
             Patrol();
         }
+        
+
+
     }
 
     public bool IsThrown() { return thrown; }
@@ -55,15 +70,16 @@ public class BaseNPC : MonoBehaviour
 
     void Patrol() 
     {
-        rb.linearVelocity = (Vector2)(patrolPositions[nextPatrolPos].position - transform.position).normalized * walkSpeed;
-        if (Vector2.Distance(patrolPositions[nextPatrolPos].position, transform.position) < posDetectRad) 
+        rb.linearVelocityX = (walkSpeed * Mathf.Sign(patrolPositions[nextPatrolPos].position.x - transform.position.x));
+        //rb.linearVelocity = (Vector2)(patrolPositions[nextPatrolPos].position - transform.position).normalized * walkSpeed;
+        if (Mathf.Abs(patrolPositions[nextPatrolPos].position.x - transform.position.x) < posDetectRad) 
         {
             if (nextPatrolPos == patrolPositions.Length -1 || nextPatrolPos == 0) 
             {
                 incrementPos *= -1;
             }
             nextPatrolPos += incrementPos;
-            IdleTimer(timeToIdle);
+            //IdleTimer(timeToIdle);
         }
     }
 
@@ -74,7 +90,8 @@ public class BaseNPC : MonoBehaviour
 
     void RunAway() 
     {
-        rb.linearVelocity = -(Vector2)(p.transform.position - transform.position).normalized * runSpeed;
+        //rb.linearVelocity = -(Vector2)(p.transform.position - transform.position).normalized * runSpeed;
+        rb.linearVelocityX = -runSpeed * Mathf.Sign(p.transform.position.x - transform.position.x);
     }
 
     IEnumerator IdleTimer(float timing)
@@ -89,5 +106,10 @@ public class BaseNPC : MonoBehaviour
         if(collision.CompareTag("Window") && IsThrown()) {
             this.GetComponent<DeathEffect>().FlyOutOfWindow();
         }
+    }
+
+    void flip() 
+    {
+        if(Mathf.Sign(rb.linearVelocityX) != dir) transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
     }
 }

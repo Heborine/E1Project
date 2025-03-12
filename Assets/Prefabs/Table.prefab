@@ -224,7 +224,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.28, y: 0.31}
-  m_ConnectedAnchor: {x: -0.28, y: 0.30900002}
+  m_ConnectedAnchor: {x: -0.28, y: 0.309}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -445,7 +445,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.28, y: 0.31}
-  m_ConnectedAnchor: {x: 0.28199998, y: 0.30900002}
+  m_ConnectedAnchor: {x: 0.282, y: 0.309}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -549,6 +549,7 @@ GameObject:
   - component: {fileID: 4748701227584096665}
   - component: {fileID: 5236858926322419535}
   - component: {fileID: 9074149081731781862}
+  - component: {fileID: 1337155088411019988}
   m_Layer: 3
   m_Name: TableTop
   m_TagString: Player
@@ -814,3 +815,39 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!58 &1337155088411019988
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099394563530727798}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.2}
+  m_Radius: 1.3
