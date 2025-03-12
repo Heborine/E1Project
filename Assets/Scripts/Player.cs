@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using System;
 using Random=UnityEngine.Random;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     public GameObject GameOver;
 
+    [SerializeField]
+    public TMP_Text timeText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -65,6 +69,7 @@ public class Player : MonoBehaviour
         {
             Move();
             GetComponent<Rigidbody2D>().position = new Vector2(tableTopRb.transform.position.x, tableTopRb.transform.position.y);
+            DisplayTime();
         }
         else
         {
@@ -240,5 +245,11 @@ public class Player : MonoBehaviour
     bool throwable(Collider2D collision) {
         if (collision.CompareTag("Throwable") || collision.CompareTag("NPC")) return true;
         return false;
+    }
+
+    void DisplayTime()
+    {
+        int timeDisplay = (int)(5 - deathTimer);
+        timeText.text = timeDisplay.ToString();
     }
 }
