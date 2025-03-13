@@ -1,11 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
+
 
 public class AudioController : MonoBehaviour
 {
     [SerializeField] AudioSource animatedTable;
     [SerializeField] AudioSource tableBam;
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
