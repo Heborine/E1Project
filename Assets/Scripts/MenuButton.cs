@@ -33,7 +33,7 @@ public class MenuButton : MonoBehaviour
 
     public void PlayGame()
     {
-        StartCoroutine(SwitchScene(2f, "Game"));
+        StartCoroutine(SwitchScene(2f, "Main Level"));
     }
 
     public void Credits()

@@ -224,7 +224,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.28, y: 0.31}
-  m_ConnectedAnchor: {x: -0.28, y: 0.309}
+  m_ConnectedAnchor: {x: -0.28, y: 0.30899996}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -263,6 +263,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3957533622100468099}
   - {fileID: 6489552525936135166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -445,7 +446,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.28, y: 0.31}
-  m_ConnectedAnchor: {x: 0.282, y: 0.309}
+  m_ConnectedAnchor: {x: 0.28199992, y: 0.30899996}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -485,7 +486,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6489552525936135166}
+  m_Father: {fileID: 218135283970697798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2634372425864901579
 BoxCollider2D:
@@ -521,7 +522,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.19678172, y: -0.46582493}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -570,7 +571,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3957533622100468099}
   - {fileID: 855238794849062204}
   - {fileID: 268506595269899078}
   - {fileID: 7737659354244500974}
@@ -660,6 +660,9 @@ MonoBehaviour:
   deathTimer: 0
   timeOfDeath: 5
   GameOver: {fileID: 0}
+  timeText: {fileID: 0}
+  isHittingGround: 0
+  deathRegion: {fileID: 0}
 --- !u!50 &2474577778679056916
 Rigidbody2D:
   serializedVersion: 5

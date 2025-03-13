@@ -56,6 +56,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     public TMP_Text timeText;
 
+    // [SerializeField]
+    public bool isHittingGround;
+
+    [SerializeField]
+    public GameObject deathRegion;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -67,8 +73,33 @@ public class Player : MonoBehaviour
     {
         if(!isDead)
         {
+            isHittingGround = deathRegion.GetComponent<Death>().onGroundDying;
+
+            Vector3 deathRegionOffset = new Vector3(0f, 0.475f, 0);
+            // Preserve the relative position by roating the offset by the player's rotation
+            Vector3 rotatedOffset = transform.rotation * deathRegionOffset;
+            deathRegion.transform.position = transform.position + rotatedOffset;
+            deathRegion.transform.rotation = transform.rotation;
+
             Move();
             GetComponent<Rigidbody2D>().position = new Vector2(tableTopRb.transform.position.x, tableTopRb.transform.position.y);
+
+            if(isHittingGround)
+            {
+                deathTimer += Time.deltaTime;
+
+                if(deathTimer >= timeOfDeath && !isDead)
+                {
+                    isDead = true;
+                    leftLegHinge.enabled = false;
+                    rightLegHinge.enabled = false;
+                }
+            }
+            else
+            {
+                deathTimer = 0f; 
+            }
+
             DisplayTime();
         }
         else
@@ -211,7 +242,7 @@ public class Player : MonoBehaviour
         Debug.Log("Collision detected");
         Debug.Log(grabbablePerson == null);
         Debug.Log(throwable(collision));
-        Debug.Log(!collision.GetComponent<ThrowablePerson>().isGrabbed());
+        // Debug.Log(!collision.GetComponent<ThrowablePerson>().isGrabbed());
         if(grabbablePerson == null && throwable(collision) && !collision.GetComponent<ThrowablePerson>().isGrabbed()) {
             Debug.Log("Found person");
             grabbablePerson = collision.gameObject;
@@ -226,26 +257,26 @@ public class Player : MonoBehaviour
             grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(true);
         }
 
-        if(collision.CompareTag("Ground"))
-        {
-            deathTimer += Time.deltaTime;
+        // if(collision.CompareTag("Ground"))
+        // {
+        //     deathTimer += Time.deltaTime;
 
-            if(deathTimer >= timeOfDeath && !isDead)
-            {
-                isDead = true;
-                leftLegHinge.enabled = false;
-                rightLegHinge.enabled = false;
-            }
-        }
+        //     if(deathTimer >= timeOfDeath && !isDead)
+        //     {
+        //         isDead = true;
+        //         leftLegHinge.enabled = false;
+        //         rightLegHinge.enabled = false;
+        //     }
+        // }
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if(other.CompareTag("Ground"))
-        {
-            deathTimer = 0f; 
-        }
-    }
+    // void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if(other.CompareTag("Ground"))
+    //     {
+    //         deathTimer = 0f; 
+    //     }
+    // }
 
     bool throwable(Collider2D collision) {
         if (collision.CompareTag("Throwable") || collision.CompareTag("NPC")) return true;
