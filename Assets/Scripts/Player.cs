@@ -286,6 +286,6 @@ public class Player : MonoBehaviour
     void DisplayTime()
     {
         int timeDisplay = (int)(5 - deathTimer);
-        timeText.text = timeDisplay.ToString();
+        timeText.text = "Death Timer: " + timeDisplay.ToString();
     }
 }
