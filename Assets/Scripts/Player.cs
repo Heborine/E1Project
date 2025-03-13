@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public GameObject deathRegion;
+    [SerializeField]
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -80,6 +81,8 @@ public class Player : MonoBehaviour
             Vector3 rotatedOffset = transform.rotation * deathRegionOffset;
             deathRegion.transform.position = transform.position + rotatedOffset;
             deathRegion.transform.rotation = transform.rotation;
+            Vector3 grabPositionOffset = new Vector3(0f, 0.8f, 0f);
+            grabPosition.transform.position = transform.position + grabPositionOffset;
 
             Move();
             GetComponent<Rigidbody2D>().position = new Vector2(tableTopRb.transform.position.x, tableTopRb.transform.position.y);
@@ -149,6 +152,7 @@ public class Player : MonoBehaviour
             else
                 throwTorque = Random.Range(75f, 100f);
             personGrabbed = false;
+            grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(false);
             grabbablePerson.GetComponent<Collider2D>().enabled = true;
             grabbablePerson.GetComponent<Rigidbody2D>().AddForce(throwStrength * throwForce);
             grabbablePerson.GetComponent<Rigidbody2D>().AddTorque(throwTorque);
