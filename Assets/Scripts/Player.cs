@@ -72,6 +72,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    void FixedUpdate()
+    {
         if(!isDead)
         {
             isHittingGround = deathRegion.GetComponent<Death>().onGroundDying;
@@ -84,6 +89,7 @@ public class Player : MonoBehaviour
             Vector3 grabPositionOffset = new Vector3(0f, 0.8f, 0f);
             grabPosition.transform.position = transform.position + grabPositionOffset;
 
+            Move();
             GetComponent<Rigidbody2D>().position = new Vector2(tableTopRb.transform.position.x, tableTopRb.transform.position.y);
 
             if(isHittingGround)
@@ -108,11 +114,6 @@ public class Player : MonoBehaviour
         {
             GameOver.SetActive(true);
         }
-    }
-
-    void FixedUpdate()
-    {
-        Move();
         if (personGrabbed && (Mathf.Abs(grabPosition.transform.position.x - grabbablePerson.transform.position.x) >= 0.05f || Mathf.Abs(grabPosition.transform.position.y - grabbablePerson.transform.position.y) >= 0.05f)) {
             secondsSoFar += Time.deltaTime;
             float t = secondsSoFar / secondsToGrab;
