@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Jobs;
@@ -39,6 +40,18 @@ public class BaseNPC : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (thrown) 
+        {
+            alertIcon.SetActive(true);
+            StartCoroutine("getThrown"); 
+            return; 
+        }
+        else { doAI(); }
+
+    }
+
+    void doAI() 
+    {
         npcAnim.SetBool(npcWalkAnimName, rb.linearVelocityX != 0);
 
         dir = transform.localScale.x;
@@ -59,9 +72,13 @@ public class BaseNPC : MonoBehaviour
             alertIcon.SetActive(false);
             Patrol();
         }
-        
+    }
 
-
+    IEnumerator getThrown() 
+    {
+        yield return new WaitForSeconds(4f);
+        thrown = false;
+        alertIcon.SetActive(false);
     }
 
     public bool IsThrown() { return thrown; }
