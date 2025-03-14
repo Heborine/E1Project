@@ -18,7 +18,7 @@ public class End : MonoBehaviour
     {
         for (int i = 0; i < npcArr.Length; i++) 
         {
-            if (npcArr[i] != null) { break; }
+            if (npcArr[i] != null) { return; }
         }
         gate.SetActive(false);
     }

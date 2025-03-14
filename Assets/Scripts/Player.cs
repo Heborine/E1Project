@@ -140,24 +140,7 @@ public class Player : MonoBehaviour
         } else if (grabbablePerson != null && personGrabbed == true) {
             if (grabbablePerson.CompareTag("NPC")) grabbablePerson.GetComponent<BaseNPC>().SetThrown(true);
 
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 throwForce = (mousePosition - (Vector2)grabbablePerson.transform.position).normalized;
-            Debug.Log(mousePosition.x + ", " + grabbablePerson.transform.position.x);
-            Debug.Log(mousePosition.y + ", " + grabbablePerson.transform.position.y);
-            Debug.Log(throwForce);
-
-            float throwTorque;
-            float torqueDir = Random.Range(0f, 1f);
-            if (torqueDir < 0.5f)
-                throwTorque = Random.Range(-100f, -75f);
-            else
-                throwTorque = Random.Range(75f, 100f);
             personGrabbed = false;
-            grabbablePerson.GetComponent<ThrowablePerson>().setGrabbed(false);
-            grabbablePerson.GetComponent<Collider2D>().enabled = true;
-            grabbablePerson.GetComponent<Rigidbody2D>().AddForce(throwStrength * throwForce);
-            grabbablePerson.GetComponent<Rigidbody2D>().AddTorque(throwTorque);
-            grabbablePerson.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
             grabbablePerson = null;
             secondsSoFar = 0f;
         }
