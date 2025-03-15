@@ -44,7 +44,13 @@ public class MenuButton : MonoBehaviour
     public void ExitGame()
     {
         // Should work for WebGL builds
-        Application.Quit();
+        #if (UNITY_EDITOR)
+            UnityEditor.EditorApplication.isPlaying = false;
+        #elif (UNITY_STANDALONE) 
+            Application.Quit();
+        #elif (UNITY_WEBGL)
+            Application.OpenURL("https://heborine.itch.io/deskenestration");
+        #endif
     }
 
     public void Options()
